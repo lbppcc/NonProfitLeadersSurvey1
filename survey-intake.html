@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Management for Non-Profit Leaders — Before We Get Started</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #888;
+    --rule: #e4e4e0;
+    --surface: #f7f7f5;
+    --white: #ffffff;
+    --accent: #1e3a5f;
+    --accent-mid: #2c5282;
+    --accent-light: #ebf0f8;
+    --accent-warm: #e8f0fc;
+    --amber: #b45309;
+    --amber-light: #fef3c7;
+    --red: #b91c1c;
+    --red-light: #fef2f2;
+    --green: #166534;
+    --green-light: #f0fdf4;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0 0 5rem;
+  }
+
+  /* Header */
+  .header {
+    background: var(--accent);
+    color: white;
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+  }
+  .header-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 0.6rem;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .header p {
+    font-size: 0.875rem;
+    opacity: 0.7;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Progress */
+  .progress-bar-wrap {
+    background: var(--rule);
+    height: 3px;
+  }
+  .progress-bar {
+    height: 3px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Section cards */
+  .section {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin-top: 1.5rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .part-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--accent-light);
+    color: var(--accent);
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .section-title-wrap {}
+  .section-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); line-height: 1.4; }
+  .section-hint { font-size: 0.775rem; color: var(--ink-muted); margin-top: 3px; line-height: 1.5; }
+
+  /* Questions */
+  .q { margin-bottom: 1.5rem; }
+  .q:last-child { margin-bottom: 0; }
+  .q-label { font-size: 0.875rem; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.55; font-weight: 500; }
+  .q-sub { font-size: 0.75rem; color: var(--ink-muted); margin-bottom: 0.6rem; line-height: 1.5; font-weight: 400; }
+
+  /* Choice pills — single select */
+  .choice-group { display: flex; flex-wrap: wrap; gap: 7px; }
+  .choice-btn {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.12s;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+  .choice-btn:hover { border-color: var(--accent-mid); color: var(--accent); background: var(--accent-warm); }
+  .choice-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+  /* Multi-select pills */
+  .multi-group { display: flex; flex-wrap: wrap; gap: 7px; }
+  .multi-btn {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.12s;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+  .multi-btn:hover { border-color: var(--accent-mid); color: var(--accent); background: var(--accent-warm); }
+  .multi-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+  /* Textarea */
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    resize: vertical;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 80px;
+    transition: border-color 0.15s;
+  }
+  textarea.tall { min-height: 100px; }
+  textarea:focus { outline: none; border-color: var(--accent-mid); }
+
+  /* Inline two-col layout for short inputs */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width: 500px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Scale buttons */
+  .scale-wrap { display: flex; align-items: center; gap: 6px; }
+  .scale-end { font-size: 0.7rem; color: var(--ink-muted); min-width: 54px; line-height: 1.3; }
+  .scale-end.right { text-align: right; }
+  .stars { display: flex; gap: 5px; flex: 1; justify-content: center; }
+  .star-btn {
+    width: 38px; height: 34px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink-muted);
+    font-weight: 400;
+    transition: all 0.12s;
+  }
+  .star-btn:hover { border-color: var(--accent-mid); color: var(--accent); background: var(--accent-warm); }
+  .star-btn.active { background: var(--accent); border-color: var(--accent); color: white; font-weight: 500; }
+
+  /* Submit */
+  .actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 11px 28px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+  .btn-submit { background: var(--accent); color: white; border-color: var(--accent); }
+  .btn-submit:hover { background: #162d4a; }
+  .btn-export { background: white; color: var(--ink); border-color: var(--rule); }
+  .btn-export:hover { border-color: var(--ink); }
+
+  /* Thank you screen */
+  #thankyou { display: none; text-align: center; padding: 4rem 1rem; }
+  .check-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+  .check-circle svg { width: 24px; height: 24px; stroke: var(--accent); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  #thankyou h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem; }
+  #thankyou p { color: var(--ink-soft); font-size: 0.875rem; margin-bottom: 1.5rem; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+  .export-note { font-size: 0.75rem; color: var(--ink-muted); text-align: center; margin-top: 0.75rem; }
+
+  @media(max-width: 480px) {
+    .scale-end { min-width: 42px; font-size: 0.65rem; }
+    .star-btn { width: 32px; height: 30px; font-size: 0.75rem; }
+    .header h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Project Management for Non-Profit Leaders</div>
+  <h1>Before we get started</h1>
+  <p>A few questions to help me tailor the class to the room. There are no right answers — just tell me where you actually are.</p>
+</div>
+<div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+<div class="container">
+<div id="survey">
+
+  <!-- PART 1: YOU & YOUR ROLE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="part-badge">Part 1 of 4</span>
+      <div class="section-title-wrap">
+        <div class="section-title">You & your role</div>
+        <div class="section-hint">Helps me understand who's in the room and how you operate day-to-day</div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">What best describes your role?</div>
+      <div class="q-sub">Select one</div>
+      <div class="choice-group">
+        <button class="choice-btn" data-group="role" data-val="Executive Director / CEO">Executive Director / CEO</button>
+        <button class="choice-btn" data-group="role" data-val="Director / Senior Manager">Director / Senior Manager</button>
+        <button class="choice-btn" data-group="role" data-val="Program Manager / Coordinator">Program Manager / Coordinator</button>
+        <button class="choice-btn" data-group="role" data-val="Development / Fundraising staff">Development / Fundraising staff</button>
+        <button class="choice-btn" data-group="role" data-val="Operations / Admin staff">Operations / Admin staff</button>
+        <button class="choice-btn" data-group="role" data-val="Volunteer or Board member">Volunteer or Board member</button>
+        <button class="choice-btn" data-group="role" data-val="Consultant / External support">Consultant / External support</button>
+        <button class="choice-btn" data-group="role" data-val="Other">Other</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">When you want to move a project forward, who typically needs to sign off?</div>
+      <div class="q-sub">Select all that apply</div>
+      <div class="multi-group" id="approvers-group">
+        <button class="multi-btn" data-group="approvers" data-val="No one — I have full autonomy">No one — I have full autonomy</button>
+        <button class="multi-btn" data-group="approvers" data-val="My direct supervisor">My direct supervisor</button>
+        <button class="multi-btn" data-group="approvers" data-val="Executive Director / CEO">Executive Director / CEO</button>
+        <button class="multi-btn" data-group="approvers" data-val="Board of Directors">Board of Directors</button>
+        <button class="multi-btn" data-group="approvers" data-val="A funder or grant body">A funder or grant body</button>
+        <button class="multi-btn" data-group="approvers" data-val="A committee or working group">A committee or working group</button>
+        <button class="multi-btn" data-group="approvers" data-val="It depends on the project">It depends on the project</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">What tends to slow projects down or stop them at your organization?</div>
+      <div class="q-sub">Select all that apply — be honest, this is just for me</div>
+      <div class="multi-group">
+        <button class="multi-btn" data-group="blockers" data-val="Lack of budget or resources">Lack of budget or resources</button>
+        <button class="multi-btn" data-group="blockers" data-val="Too many competing priorities">Too many competing priorities</button>
+        <button class="multi-btn" data-group="blockers" data-val="Unclear decision-making authority">Unclear decision-making authority</button>
+        <button class="multi-btn" data-group="blockers" data-val="Getting buy-in from leadership">Getting buy-in from leadership</button>
+        <button class="multi-btn" data-group="blockers" data-val="Getting buy-in from peers or staff">Getting buy-in from peers or staff</button>
+        <button class="multi-btn" data-group="blockers" data-val="Volunteer availability or reliability">Volunteer availability or reliability</button>
+        <button class="multi-btn" data-group="blockers" data-val="Scope creep — projects keep growing">Scope creep — projects keep growing</button>
+        <button class="multi-btn" data-group="blockers" data-val="No clear process for managing projects">No clear process for managing projects</button>
+        <button class="multi-btn" data-group="blockers" data-val="External dependencies (funders, partners)">External dependencies (funders, partners)</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Where do you have the most influence at your organization?</div>
+      <div class="q-sub">Select all that apply</div>
+      <div class="multi-group">
+        <button class="multi-btn" data-group="influence" data-val="Setting strategy or priorities">Setting strategy or priorities</button>
+        <button class="multi-btn" data-group="influence" data-val="Managing or motivating people">Managing or motivating people</button>
+        <button class="multi-btn" data-group="influence" data-val="Building external relationships">Building external relationships</button>
+        <button class="multi-btn" data-group="influence" data-val="Getting things done operationally">Getting things done operationally</button>
+        <button class="multi-btn" data-group="influence" data-val="Fundraising or resource development">Fundraising or resource development</button>
+        <button class="multi-btn" data-group="influence" data-val="Communications and storytelling">Communications and storytelling</button>
+        <button class="multi-btn" data-group="influence" data-val="I'm still figuring that out">I'm still figuring that out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 2: YOUR PROJECT WORLD -->
+  <div class="section">
+    <div class="section-header">
+      <span class="part-badge">Part 2 of 4</span>
+      <div class="section-title-wrap">
+        <div class="section-title">Your project world</div>
+        <div class="section-hint">Helps me use examples that actually resemble your work</div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">What kinds of projects do you typically work on or want to manage better?</div>
+      <div class="q-sub">Select all that apply — then pick your top two below</div>
+      <div class="multi-group" id="project-types-all">
+        <button class="multi-btn" data-group="project_types" data-val="Fundraising campaigns or events">Fundraising campaigns or events</button>
+        <button class="multi-btn" data-group="project_types" data-val="Grant-funded programs">Grant-funded programs</button>
+        <button class="multi-btn" data-group="project_types" data-val="Volunteer recruitment or management">Volunteer recruitment or management</button>
+        <button class="multi-btn" data-group="project_types" data-val="Community outreach or programs">Community outreach or programs</button>
+        <button class="multi-btn" data-group="project_types" data-val="Internal operations or process improvement">Internal operations or process improvement</button>
+        <button class="multi-btn" data-group="project_types" data-val="Technology or systems rollout">Technology or systems rollout</button>
+        <button class="multi-btn" data-group="project_types" data-val="Advocacy or policy campaigns">Advocacy or policy campaigns</button>
+        <button class="multi-btn" data-group="project_types" data-val="Partnerships or collaborations">Partnerships or collaborations</button>
+        <button class="multi-btn" data-group="project_types" data-val="Communications or marketing initiatives">Communications or marketing initiatives</button>
+        <button class="multi-btn" data-group="project_types" data-val="Strategic planning">Strategic planning</button>
+      </div>
+
+      <div id="top-two-wrap" style="margin-top:1rem;display:none;">
+        <div class="q-sub" style="margin-bottom:8px;">Now pick your top two — the types you most want this class to help with</div>
+        <div class="multi-group" id="project-types-top"></div>
+        <div id="top-two-warning" style="font-size:0.75rem;color:#b45309;margin-top:6px;display:none;">Please select exactly two.</div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">At your organization, which of the following tend to be fixed — the things you can't really change once a project starts?</div>
+      <div class="q-sub">Select all that apply — this helps me understand where flexibility actually lives for you</div>
+      <div class="multi-group">
+        <button class="multi-btn" data-group="iron_triangle" data-val="Timeline — the deadline is the deadline">Timeline — the deadline is the deadline</button>
+        <button class="multi-btn" data-group="iron_triangle" data-val="Resources — budget and people are set">Resources — budget and people are set</button>
+        <button class="multi-btn" data-group="iron_triangle" data-val="Scope — what gets done is non-negotiable">Scope — what gets done is non-negotiable</button>
+        <button class="multi-btn" data-group="iron_triangle" data-val="Honestly, everything feels fixed">Honestly, everything feels fixed</button>
+        <button class="multi-btn" data-group="iron_triangle" data-val="None — we have flexibility across the board">None — we have flexibility across the board</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Describe a specific project you have in mind — real or upcoming</div>
+      <div class="q-sub">e.g. "Increase volunteer sign-ups by 30% before our spring gala" or "Roll out a new donor database by Q3." Don't worry about format — just tell me what it is.</div>
+      <textarea class="tall" id="project_in_mind" placeholder="What's the project, and what does success look like?"></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label">How comfortable are you with project management right now?</div>
+      <div class="scale-wrap">
+        <span class="scale-end">Never thought about it</span>
+        <div class="stars" data-q="pm_comfort"></div>
+        <span class="scale-end right">I use PM tools regularly</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PART 3: A PAST PROJECT -->
+  <div class="section">
+    <div class="section-header">
+      <span class="part-badge">Part 3 of 4</span>
+      <div class="section-title-wrap">
+        <div class="section-title">A project from your past</div>
+        <div class="section-hint">You'll use this as a personal reference point during the class</div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Think of a project that felt chaotic, stalled, or went sideways. What was it?</div>
+      <div class="q-sub">You don't need to name names — just describe the situation. No one else will see this.</div>
+      <textarea class="tall" id="past_project" placeholder="e.g. A fundraising event where we lost track of who was doing what, or a program launch that kept getting delayed…"></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Looking back, what do you think the root cause was?</div>
+      <div class="q-sub">Select all that feel true</div>
+      <div class="multi-group">
+        <button class="multi-btn" data-group="root_cause" data-val="No clear owner or decision-maker">No clear owner or decision-maker</button>
+        <button class="multi-btn" data-group="root_cause" data-val="Roles and responsibilities weren't defined">Roles and responsibilities weren't defined</button>
+        <button class="multi-btn" data-group="root_cause" data-val="The scope kept changing">The scope kept changing</button>
+        <button class="multi-btn" data-group="root_cause" data-val="We didn't have a real timeline">We didn't have a real timeline</button>
+        <button class="multi-btn" data-group="root_cause" data-val="Communication broke down">Communication broke down</button>
+        <button class="multi-btn" data-group="root_cause" data-val="People weren't bought in from the start">People weren't bought in from the start</button>
+        <button class="multi-btn" data-group="root_cause" data-val="We ran out of time or resources">We ran out of time or resources</button>
+        <button class="multi-btn" data-group="root_cause" data-val="External factors outside our control">External factors outside our control</button>
+        <button class="multi-btn" data-group="root_cause" data-val="Honestly, I'm still not sure">Honestly, I'm still not sure</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">What's one thing you wish you'd done differently?</div>
+      <textarea id="past_different" placeholder="Even a small thing counts — sometimes the smallest shifts make the biggest difference."></textarea>
+    </div>
+
+  </div>
+
+  <!-- PART 4: WHAT YOU WANT & HOW YOU WORK -->
+  <div class="section">
+    <div class="section-header">
+      <span class="part-badge">Part 4 of 4</span>
+      <div class="section-title-wrap">
+        <div class="section-title">What you want & how you work</div>
+        <div class="section-hint">Helps me pitch the class at the right level and cover what actually matters to you</div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">What do you most want to walk away with from this class?</div>
+      <div class="q-sub">Select up to three</div>
+      <div class="multi-group" id="goals-group">
+        <button class="multi-btn" data-group="goals" data-val="A step-by-step PM process I can actually follow">A step-by-step process I can actually follow</button>
+        <button class="multi-btn" data-group="goals" data-val="Tools and templates I can use right away">Tools and templates I can use right away</button>
+        <button class="multi-btn" data-group="goals" data-val="How to get buy-in from leadership or board">How to get buy-in from leadership or board</button>
+        <button class="multi-btn" data-group="goals" data-val="How to manage a team or volunteers through a project">How to manage a team or volunteers through a project</button>
+        <button class="multi-btn" data-group="goals" data-val="How to scope a project and set realistic goals">How to scope a project and set realistic goals</button>
+        <button class="multi-btn" data-group="goals" data-val="How to keep a project on track when things shift">How to keep a project on track when things shift</button>
+        <button class="multi-btn" data-group="goals" data-val="How to communicate progress to stakeholders">How to communicate progress to stakeholders</button>
+        <button class="multi-btn" data-group="goals" data-val="Confidence — I just want to feel less overwhelmed">Confidence — I just want to feel less overwhelmed</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">When you're part of a project, what do the people around you care about most?</div>
+      <div class="q-sub">Think about your supervisor, board, or key stakeholders — select all that apply</div>
+      <div class="multi-group">
+        <button class="multi-btn" data-group="stakeholder_priorities" data-val="Hitting deadlines">Hitting deadlines</button>
+        <button class="multi-btn" data-group="stakeholder_priorities" data-val="Staying within budget">Staying within budget</button>
+        <button class="multi-btn" data-group="stakeholder_priorities" data-val="Visible impact or outcomes">Visible impact or outcomes</button>
+        <button class="multi-btn" data-group="stakeholder_priorities" data-val="Being kept in the loop">Being kept in the loop</button>
+        <button class="multi-btn" data-group="stakeholder_priorities" data-val="Relationships and morale">Relationships and morale</button>
+        <button class="multi-btn" data-group="stakeholder_priorities" data-val="Compliance with funder requirements">Compliance with funder requirements</button>
+        <button class="multi-btn" data-group="stakeholder_priorities" data-val="Not being surprised by problems">Not being surprised by problems</button>
+        <button class="multi-btn" data-group="stakeholder_priorities" data-val="Keeping it simple — they trust me to handle it">Keeping it simple — they trust me to handle it</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">How often do your stakeholders typically want updates on a project?</div>
+      <div class="q-sub">Select one</div>
+      <div class="choice-group">
+        <button class="choice-btn" data-group="update_freq" data-val="Daily check-ins">Daily check-ins</button>
+        <button class="choice-btn" data-group="update_freq" data-val="Weekly">Weekly</button>
+        <button class="choice-btn" data-group="update_freq" data-val="Every few weeks">Every few weeks</button>
+        <button class="choice-btn" data-group="update_freq" data-val="At key milestones only">At key milestones only</button>
+        <button class="choice-btn" data-group="update_freq" data-val="Only when something goes wrong">Only when something goes wrong</button>
+        <button class="choice-btn" data-group="update_freq" data-val="It varies a lot">It varies a lot</button>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Is there anything else you want me to know before class?</div>
+      <div class="q-sub">A specific challenge, a concern, something you're hoping we don't skip — anything goes</div>
+      <textarea id="anything_else" placeholder="Optional — but often the most useful thing I read."></textarea>
+    </div>
+
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-submit" onclick="submitSurvey()">Submit</button>
+  </div>
+
+</div><!-- /survey -->
+
+<div id="thankyou">
+  <div class="check-circle">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  </div>
+  <h2>You're all set</h2>
+  <p>This helps me make the class genuinely useful for you. See you in the room.</p>
+  <button class="btn btn-export" onclick="exportToExcel()">Download my responses (.xlsx)</button>
+  <p class="export-note">Saves a copy of your answers for your own reference</p>
+</div>
+
+</div><!-- /container -->
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+const responses = {};
+const multiResponses = {};
+
+// Track all interactive elements for progress bar
+const totalInputs = document.querySelectorAll('[data-group], [data-q], textarea').length;
+
+function updateProgress() {
+  let answered = 0;
+  const answeredGroups = new Set();
+
+  document.querySelectorAll('.choice-btn.active, .multi-btn.active, .star-btn.active').forEach(btn => {
+    answeredGroups.add(btn.dataset.group || btn.closest('[data-q]')?.dataset.q);
+  });
+
+  document.querySelectorAll('textarea').forEach(ta => {
+    if (ta.value.trim().length > 0) answeredGroups.add(ta.id);
+  });
+
+  // Count unique groups/questions answered
+  const totalGroups = new Set();
+  document.querySelectorAll('[data-group]').forEach(el => totalGroups.add(el.dataset.group));
+  document.querySelectorAll('[data-q]').forEach(el => totalGroups.add(el.dataset.q));
+  document.querySelectorAll('textarea').forEach(ta => totalGroups.add(ta.id));
+
+  const pct = Math.min(100, Math.round((answeredGroups.size / totalGroups.size) * 100));
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+// Single-select choice buttons
+document.querySelectorAll('.choice-btn').forEach(btn => {
+  btn.onclick = () => {
+    const g = btn.dataset.group;
+    document.querySelectorAll(`.choice-btn[data-group="${g}"]`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    responses[g] = btn.dataset.val;
+    updateProgress();
+  };
+});
+
+// Multi-select buttons (standard)
+document.querySelectorAll('.multi-btn:not(#project-types-top .multi-btn)').forEach(btn => {
+  btn.onclick = () => {
+    btn.classList.toggle('active');
+    const g = btn.dataset.group;
+    if (!multiResponses[g]) multiResponses[g] = new Set();
+    if (btn.classList.contains('active')) {
+      multiResponses[g].add(btn.dataset.val);
+    } else {
+      multiResponses[g].delete(btn.dataset.val);
+    }
+    responses[g] = Array.from(multiResponses[g]).join('; ');
+
+    // If this is a project_types button, rebuild the top-two picker
+    if (g === 'project_types') {
+      rebuildTopTwo();
+    }
+
+    updateProgress();
+  };
+});
+
+// Rebuild the top-two picker whenever the all-types selection changes
+function rebuildTopTwo() {
+  const selected = Array.from(multiResponses['project_types'] || []);
+  const wrap = document.getElementById('top-two-wrap');
+  const container = document.getElementById('project-types-top');
+
+  if (selected.length < 2) {
+    wrap.style.display = 'none';
+    responses['project_types_top2'] = '';
+    return;
+  }
+
+  wrap.style.display = 'block';
+
+  // Keep track of current top-two selections
+  if (!multiResponses['project_types_top2']) multiResponses['project_types_top2'] = new Set();
+  // Remove any top-two that are no longer in the all-types selection
+  multiResponses['project_types_top2'].forEach(v => {
+    if (!selected.includes(v)) multiResponses['project_types_top2'].delete(v);
+  });
+
+  // Rebuild buttons
+  container.innerHTML = '';
+  selected.forEach(val => {
+    const btn = document.createElement('button');
+    btn.className = 'multi-btn' + (multiResponses['project_types_top2'].has(val) ? ' active' : '');
+    btn.textContent = val;
+    btn.dataset.val = val;
+    btn.onclick = () => {
+      const already = multiResponses['project_types_top2'].has(val);
+      if (already) {
+        multiResponses['project_types_top2'].delete(val);
+        btn.classList.remove('active');
+      } else {
+        if (multiResponses['project_types_top2'].size >= 2) {
+          document.getElementById('top-two-warning').style.display = 'block';
+          return;
+        }
+        multiResponses['project_types_top2'].add(val);
+        btn.classList.add('active');
+      }
+      document.getElementById('top-two-warning').style.display = 'none';
+      responses['project_types_top2'] = Array.from(multiResponses['project_types_top2']).join('; ');
+      updateProgress();
+    };
+    container.appendChild(btn);
+  });
+
+  responses['project_types_top2'] = Array.from(multiResponses['project_types_top2']).join('; ');
+}
+
+// Scale buttons
+document.querySelectorAll('[data-q]').forEach(wrap => {
+  const q = wrap.dataset.q;
+  responses[q] = '';
+  for (let i = 1; i <= 5; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'star-btn';
+    btn.textContent = i;
+    btn.dataset.val = i;
+    btn.dataset.group = q;
+    btn.onclick = () => {
+      responses[q] = i;
+      wrap.querySelectorAll('.star-btn').forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.val) <= i);
+      });
+      updateProgress();
+    };
+    wrap.appendChild(btn);
+  }
+});
+
+// Textarea progress tracking
+document.querySelectorAll('textarea').forEach(ta => {
+  ta.addEventListener('input', updateProgress);
+});
+
+function submitSurvey() {
+  responses['project_in_mind'] = document.getElementById('project_in_mind').value;
+  responses['past_project'] = document.getElementById('past_project').value;
+  responses['past_different'] = document.getElementById('past_different').value;
+  responses['anything_else'] = document.getElementById('anything_else').value;
+  responses['submitted_at'] = new Date().toLocaleString();
+  document.getElementById('survey').style.display = 'none';
+  document.getElementById('thankyou').style.display = 'block';
+  document.getElementById('progressBar').style.width = '100%';
+}
+
+function exportToExcel() {
+  const labels = {
+    role: 'Role',
+    approvers: 'Who signs off (approvers)',
+    blockers: 'What slows projects down',
+    influence: 'Areas of influence',
+    project_types: 'All project types selected',
+    project_types_top2: 'Top two project types',
+    iron_triangle: 'What is fixed (timeline / resources / scope)',
+    project_in_mind: 'Specific project in mind',
+    pm_comfort: 'PM comfort level (1-5)',
+    past_project: 'Past chaotic project',
+    root_cause: 'Root cause of past project issues',
+    past_different: 'What they would do differently',
+    goals: 'Goals for this class',
+    stakeholder_priorities: 'What stakeholders care about',
+    update_freq: 'Stakeholder update frequency',
+    anything_else: 'Anything else',
+    submitted_at: 'Submitted at'
+  };
+
+  const row = {};
+  for (const [key, label] of Object.entries(labels)) {
+    row[label] = responses[key] || '';
+  }
+
+  const ws = XLSX.utils.json_to_sheet([row]);
+  ws['!cols'] = Object.keys(row).map(k => ({ wch: Math.max(k.length, 24) }));
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Intake');
+  XLSX.writeFile(wb, 'pm-intake.xlsx');
+}
+</script>
+</body>
+</html>
